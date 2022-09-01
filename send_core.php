@@ -740,7 +740,7 @@ if (!$done) {
         <input type="text" name="sendurl" id="remoteurlinput"
        value="' .htmlspecialchars($messagedata['sendurl']).'" size="60" /> <span id="remoteurlstatus"></span></div>';
     if (isset($messagedata['sendmethod']) && $messagedata['sendmethod'] != 'remoteurl') {
-        $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script>';
+        $GLOBALS['pagefooter']['hideremoteurl'] = '<script type="text/javascript">$("#remoteurl").hide();</script><script src="./ckeditor.js"></script><script>ClassicEditor.create(document.querySelector("#editor")).then(editor => {console.log(editor);}).catch(error => {console.error(error);});</script>';
     }
 
 // custom code - end
@@ -1403,14 +1403,4 @@ $testpanel = new UIPanel(s('Send Test'), $sendtest_content);
 $testpanel->setID('testpanel');
 
 # print $testpanel->display();
-echo "<script src='./ckeditor.js'></script>
-<script>
-ClassicEditor
-    .create(document.querySelector('#editor'))
-    .then(editor => {
-        console.log(editor);
-    })
-    .catch(error => {
-        console.error(error);
-    });
-</script>";
+
