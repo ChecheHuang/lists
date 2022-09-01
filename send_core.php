@@ -4,6 +4,7 @@ require_once dirname(__FILE__).'/accesscheck.php';
 include_once dirname(__FILE__).'/date.php';
 include_once dirname(__FILE__).'/analytics.php';
 
+
 $errormsg = '';
 $done = 0;
 $messageid = 0;
@@ -898,7 +899,7 @@ date('H:i, l j F Y', strtotime($currentTime[0])) . '</span>' . '</div>';
                 $messagedata['message']).'</div>';
     } else {
         $maincontent .= '
-      <div><textarea name="message" cols="65" rows="20">' .htmlspecialchars($messagedata['message']).'</textarea></div>';
+      <div id="editor"><textarea name="message" cols="65" rows="20">' .htmlspecialchars($messagedata['message']).'</textarea></div>';
     }
 
     //0013076: different content when forwarding 'to a friend'
@@ -1402,3 +1403,14 @@ $testpanel = new UIPanel(s('Send Test'), $sendtest_content);
 $testpanel->setID('testpanel');
 
 # print $testpanel->display();
+echo "<script src='./ckeditor.js'></script>
+<script>
+ClassicEditor
+    .create(document.querySelector('#editor'))
+    .then(editor => {
+        console.log(editor);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+</script>";
